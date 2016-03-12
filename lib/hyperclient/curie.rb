@@ -42,8 +42,8 @@ module Hyperclient
     #
     # Returns a new expanded url.
     def expand(rel)
-      return rel unless rel && templated?
-      href.gsub('{rel}', rel) if href && ( ! /^http[s]?:/i.match(rel) )
+      return rel unless ( rel && templated? ) ||| (  /^http[s]?:/i.match(rel) )
+      href.gsub('{rel}', rel) if href 
     end
   end
 end
