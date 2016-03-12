@@ -19,11 +19,12 @@ module Hyperclient
     def initialize(collection, curies, entry_point)
       fail "Invalid response for LinkCollection. The response was: #{collection.inspect}" if collection && !collection.respond_to?(:collect)
 
-      @curies = (curies || {}).reduce({}) do |hash, curie_hash|
-        curie = build_curie(curie_hash, entry_point)
-        hash.update(curie.name => curie)
-      end
+      #@curies = (curies || {}).reduce({}) do |hash, curie_hash|
+      #  curie = build_curie(curie_hash, entry_point)
+      #  hash.update(curie.name => curie)
+      #end
 
+      @curies = {}
       @collection = (collection || {}).reduce({}) do |hash, (name, link)|
         hash.update(name => build_link(name, link, @curies, entry_point))
       end
