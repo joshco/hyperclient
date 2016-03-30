@@ -7,6 +7,7 @@ module Hyperclient
   #
   class Link
     attr_accessor :query_params
+    @query_params={}
     # Public: Initializes a new Link.
     #
     # key           - The key or name of the link.
@@ -177,7 +178,7 @@ module Hyperclient
     end
 
     def http_method(method, body = nil)
-      unless @query_params.empty?
+      unless @query_params==nil || @query_params.empty?
         new_url=add_query_params(_url, @query_params)
       else
         new_url=_url
