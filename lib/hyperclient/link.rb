@@ -172,7 +172,7 @@ module Hyperclient
     def add_query_params(old_url, new_params)
       new_query_array= new_params.keys.map { |qi| [qi,new_params[qi]]}
       uri=URI(old_url)
-      query_array=URI.decode_www_form(uri.query || []).concat(new_query_array)
+      query_array=URI.decode_www_form(uri.query || '').concat(new_query_array)
       uri.query=URI.encode_www_form(query_array)
       return uri.to_s
     end
